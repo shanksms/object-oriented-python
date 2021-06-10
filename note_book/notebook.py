@@ -46,10 +46,18 @@ class Notebook:
         self.notes.append(Note(memo, tags))
 
     def modify_memo(self, note_id, memo):
-        self._find_note(note_id).memo = memo
+        note = self._find_note(note_id)
+        if note:
+            note.memo = memo
+            return True
+        return False
 
     def modify_tags(self, note_id, tags):
-        self._find_note(note_id).tags = tags
+        note = self._find_note(note_id)
+        if note:
+            note.tags = tags
+            return True
+        return False
 
     def search(self, filter):
         """Find all notes that match the given filter
